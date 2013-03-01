@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/action_bar_menu"
+>
+    
+    <item android:id="@+id/add_content"
+          android:icon="@drawable/content_new"
+          android:title="@string/add"
+          
+          android:showAsAction="ifRoom|withText" />
+      <item android:id="@+id/remove_content"
+          android:icon="@drawable/content_remove"
+          android:title="@string/delete"
+          android:showAsAction="ifRoom|withText" />
+      <item
+          android:id="@+id/save_content"
+          android:icon="@drawable/content_save"
+          android:title="save xml"
+          />
+      <item
+          android:id="@+id/erase_file"
+          android:title="erase xml"
+          />
+</menu>
