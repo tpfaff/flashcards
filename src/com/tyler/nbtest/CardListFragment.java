@@ -33,8 +33,9 @@ public class CardListFragment extends ListFragment{
   private Subject parentSubject;
   private ArrayList<Subject> masterList=new ArrayList<Subject>();
   private ArrayList<String> words=new ArrayList<String>();
-  private ListView lv;
-  //MainActivity act;
+  private CardContentFragment frag;//reference for later use
+ 
+  
     public CardListFragment(){}
     public CardListFragment(ArrayList<String> cards,boolean mTwoPane, int parentPosition, ArrayList<Subject> masterList){
         this.masterList=masterList;
@@ -84,16 +85,9 @@ public class CardListFragment extends ListFragment{
     public void onListItemClick(ListView l, View v, int position, long id) {
 		@SuppressWarnings("unused")
 		ListView lv=getListView();
-        if(mTwoPane){
-            CardContentFragment frag=new CardContentFragment();
-            getFragmentManager().beginTransaction().add(R.id.content_container, frag).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+       
             l.setItemChecked(position, true);
-            
-           
-        }
-       
-       
-       
+            frag.setCardContentFragmentFrontText(parentSubject.getCards().get(position).getCardFront());    
     }
 
     @Override
@@ -102,6 +96,11 @@ public class CardListFragment extends ListFragment{
         boolean noCards=false;
         Resources res=getResources();
         Drawable background=res.getDrawable(R.drawable.notecard_background);
+        
+        if(mTwoPane){
+            frag=new CardContentFragment();
+            getFragmentManager().beginTransaction().add(R.id.content_container, frag).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+        }
        
       //  View childView=getListView().getChildAt(0);
       //  childView.setBackground(getResources().getDrawable(R.drawable.notecard_background));

@@ -7,6 +7,9 @@ package com.tyler.nbtest;
 
 
 
+import com.tyler.nbtest.cards.Subject;
+
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -26,12 +29,13 @@ import android.widget.ViewFlipper;
  */
 public class CardContentFragment extends Fragment {
         private ViewFlipper vf;
-        
+        private Subject parentSubject;
 	TextView word;
 	TextView def;
         float lastX=0.0f,newX=0.0f;
         //def=(TextView)getActivity().findViewById(R.id.definition_view);
 	
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,10 +118,13 @@ public class CardContentFragment extends Fragment {
 
                 
                 word.setBackground(shape);
-                word.setText("Sigh");
+              //  word.setText(parentSubject);
 	}
 	
-	
+	public void setCardContentFragmentFrontText(String frontText){
+		word=(TextView)getActivity().findViewById(R.id.word_view);
+		word.setText(frontText);
+	}
 
 	private void showShortToast(String message){
 		Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
