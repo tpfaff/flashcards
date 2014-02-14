@@ -4,6 +4,11 @@
  */
 package com.tyler.nbtest.cards;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+
 /**
  *
  * @author Tyler
@@ -11,6 +16,7 @@ package com.tyler.nbtest.cards;
 public class Cards {
     private String cardFront;
     private String cardBack;
+    private Drawable cardImage;
     public Cards(){
     
     }
@@ -25,5 +31,10 @@ public class Cards {
     }
     public String getCardBack(){
         return cardBack;
+    }
+    
+    public void setCardImage(int drawableId,Activity parent){
+    	Resources res=parent.getResources();
+    	cardImage=res.getDrawable(drawableId);
     }
 }

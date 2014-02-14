@@ -30,6 +30,7 @@ import android.widget.ViewFlipper;
 public class CardContentFragment extends Fragment {
         private ViewFlipper vf;
         private Subject parentSubject;
+        private String frontText;
 	TextView word;
 	TextView def;
         float lastX=0.0f,newX=0.0f;
@@ -39,7 +40,7 @@ public class CardContentFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+       
     }
 
 	@Override
@@ -49,7 +50,7 @@ public class CardContentFragment extends Fragment {
                         //word = inflater.inflate(R.layout.card, container, false);
                         //card.addView(rootView);
 		//setViews(rootView);
-            
+            inflater.inflate(R.layout.phone_card_content, container);
                 vf=(ViewFlipper)getActivity().findViewById(R.id.word_flipper);
 		word=(TextView)getActivity().findViewById(R.id.word_view);
                 word.setText("Details");
@@ -117,13 +118,21 @@ public class CardContentFragment extends Fragment {
                 Drawable shape = res. getDrawable(R.drawable.notecard_background);
 
                 
-                word.setBackground(shape);
-              //  word.setText(parentSubject);
+                
+        		if(word!=null){ //must do this hear for phone layout, set the text when the fragment starts
+        			//for tablet layout, the fragment starts right away, and the text isnt ready
+        			//so must set the text somewhere else... ugly
+        			word.setBackground(shape);
+        		   word.setText(frontText);
+        			}
 	}
 	
-	public void setCardContentFragmentFrontText(String frontText){
+	public void twoPaneSetText(){
 		word=(TextView)getActivity().findViewById(R.id.word_view);
-		word.setText(frontText);
+		   word.setText(frontText);
+	}
+	public void setCardContentFragmentFrontText(String frontText){
+		this.frontText=frontText;
 	}
 
 	private void showShortToast(String message){

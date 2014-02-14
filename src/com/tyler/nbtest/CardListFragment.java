@@ -87,7 +87,14 @@ public class CardListFragment extends ListFragment{
 		ListView lv=getListView();
        
             l.setItemChecked(position, true);
-            frag.setCardContentFragmentFrontText(parentSubject.getCards().get(position).getCardFront());    
+            if(!mTwoPane){ //if im a phone
+            	getFragmentManager().beginTransaction().hide(this).commit();
+            	getFragmentManager().beginTransaction().add(R.id.top_phone_container, frag).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+            	frag.setCardContentFragmentFrontText(parentSubject.getCards().get(position).getCardFront());  
+            }else{//if two fragments are already visible, set the text without adding another fragment	
+            	frag.setCardContentFragmentFrontText(parentSubject.getCards().get(position).getCardFront()); 
+            	frag.twoPaneSetText();//since onStart has already been called for the content fragment, if we are a tablet
+            }
     }
 
     @Override
@@ -96,10 +103,12 @@ public class CardListFragment extends ListFragment{
         boolean noCards=false;
         Resources res=getResources();
         Drawable background=res.getDrawable(R.drawable.notecard_background);
+        frag=new CardContentFragment();
         
         if(mTwoPane){
-            frag=new CardContentFragment();
+            
             getFragmentManager().beginTransaction().add(R.id.content_container, frag).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+        	
         }
        
       //  View childView=getListView().getChildAt(0);

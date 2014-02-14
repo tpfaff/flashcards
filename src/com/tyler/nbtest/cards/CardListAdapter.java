@@ -28,7 +28,7 @@ public class CardListAdapter extends ArrayAdapter<Cards>{
 	}
 
 	
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) { //return views for each list item, one by one
         View view = convertView;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -39,10 +39,8 @@ public class CardListAdapter extends ArrayAdapter<Cards>{
 
         Cards item = getItem(position);
         if (item!= null) {
-            // My layout has only one TextView
             TextView itemView = (TextView) view.findViewById(R.id.list_item_text);
             if (itemView != null) {
-                // do whatever you want with your string and long
                 itemView.setText(item.getCardFront());
                 itemView.setBackground(context.getResources().getDrawable(R.drawable.notecard_background));
                 itemView.setAlpha((float) .5);
