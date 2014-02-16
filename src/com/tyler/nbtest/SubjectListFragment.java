@@ -5,6 +5,7 @@
 package com.tyler.nbtest;
 
 import android.R.menu;
+import android.annotation.SuppressLint;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import com.tyler.nbtest.cards.RemoveContentMenuHandler;
 import com.tyler.nbtest.cards.Subject;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
  *
  * @author Tyler
  */
+@SuppressLint("ValidFragment")
 public class SubjectListFragment extends ListFragment {
     boolean mTwoPane;
     MenuItem item;
@@ -52,6 +56,7 @@ public class SubjectListFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+      
     }
 
     @Override
@@ -87,7 +92,10 @@ public class SubjectListFragment extends ListFragment {
     @Override
     public void onStart() {
         super.onStart();
+     //   TextView header=(TextView)getActivity().getLayoutInflater().inflate(R.id.subject_header_textview, this.getListView());
+      //  this.getListView().addHeaderView(header);
         setListAdapter(new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_activated_1,subjectNames));
+
         setRetainInstance(true);
     }
     public void refreshList(ArrayList<String> subjectNames){

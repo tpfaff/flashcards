@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:text="Add a text or image card?" 
+        android:id="@+id/alert_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        />
+	<ImageButton
+    	android:id="@+id/img_button"
+    	android:src="@drawable/ic_image_select_picture"
+    	android:maxWidth="96dp"
+    	android:maxHeight="96dp"
+    	android:paddingRight="24dp"
+   		android:layout_width="wrap_content"
+   		android:layout_height="wrap_content"
+   		android:layout_below="@id/alert_header"
+    />
+	<ImageButton
+    	android:id="@+id/text_button"
+    	android:text="TEXT"
+    	android:width="96dp"
+    	android:height="96dp"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_toRightOf="@id/img_button"
+    	android:layout_below="@id/alert_header"
+    />
+
+</RelativeLayout>
